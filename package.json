@@ -15,6 +15,9 @@
     "express": "^4.17.1"
   },
   "nodemonConfig": {
-    "ignore": ["*.json", "*.js"]
+    "ignore": [
+      "*.json",
+      "*.js"
+    ]
   }
 }

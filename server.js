@@ -1,4 +1,4 @@
-const { static } = require("express")
+//const { static } = require("express")
 const express = require("express")
 const app = express()
 const fs = require('fs');
@@ -7,6 +7,7 @@ const API_BASE_URL = "https://api.punkapi.com/v2/"
 
 app.set("view engine", "ejs")
 app.use("/css", express.static(__dirname + "/css"))
+app.use("js", express.static(__dirname + "/css"))
 
 axios.get(API_BASE_URL + "beers")
     .then(response =>{

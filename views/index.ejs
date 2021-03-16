@@ -1,17 +1,78 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>NodeJS</title>
-</head>
-<body>
-    <h1>YOOOO</h1>
-    <ul>
-        <% beers.forEach(function(beer) { %>
-            <li> Name: <%= beer.name %></li>
-        <% }); %>
-    </ul>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="firstPage">
+            <div class="textContainer">
+                <div id="title">LA BINOUSERIE</div>
+                <div class="textChange">truc</div>
+            </div>
+            <a class="nav-arrow-down">
+                <span></span>
+            </a>
+        </div>
+        <div id="headerBack">
+            <ul>
+                <li class="noHeight">Terms</li>
+                <li>Idk</li>
+                <li>Contact</li>
+                <li class="active">Introduction</li>
+                <li>Beers</li>
+                <li>Terms</li>
+                <li class="noHeight">Idk</li>
+            </ul>
+            <div class="imgContainer">
+                <div class="element active" id="introduction">
+                    <div class="back"></div>
+                    <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
+                    <div class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
+                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                    </div>
+                </div>
+                <div class="element bottom" id="beers">
+                    <img class="backRightLeft" src="./assets/img/londonPride.jpg" alt="">
+                    <div class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
+                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                    </div>
+                </div>
+                <div class="element bottom" id="contact">
+                    <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
+                    <div class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
+                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                    </div>
+                </div>
+                <div class="element bottom" id="idk">
+                    <img class="backRightLeft" src="./assets/img/beers.jpg" alt="">
+                    <div class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
+                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                    </div>
+                </div>
+                <div class="element bottom" id="terms">
+                    <img class="backRightLeft" src="./assets/img/londonPride.jpg" alt="">
+                    <div class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
+                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul>
+            <% beers.forEach(function(beer) { %>
+                <li> Name: <%= beer.name %></li>
+            <% }); %>
+        </ul>
+
+        <script src="./js/index.js"></script>
+    </body>
 </html>

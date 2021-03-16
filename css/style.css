@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "./assets/fonts/Champagne & Limousines.ttf", serif;
+  overflow: hidden;
+  background-color: #0D0D0C;
+}
+body .firstPage {
+  position: absolute;
+  background-color: whitesmoke;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  font-family: "defaultFont", serif;
+  transform: translateY(0%);
+  justify-content: center;
+  display: flex;
+}
+body .firstPage.hidden {
+  transform: translateY(-100%);
+  animation: 1s activeToHidden;
+}
+body .firstPage .textContainer {
+  position: absolute;
+  top: 40%;
+  width: fit-content;
+  animation: opacityChange 3s ease-in;
+}
+body .firstPage .textContainer #title {
+  font-size: 5em;
+  color: #120D16;
+  filter: blur(0.5px);
+  text-align: left;
+  align-self: center;
+}
+body .firstPage .textContainer .textChange {
+  text-align: left;
+  align-self: center;
+}
+body .firstPage .textContainer .border {
+  height: 1px;
+  width: 70%;
+  background-color: black;
+  transform: translateX(-50%);
+  margin-left: 50%;
+}
+body .firstPage .nav-arrow-down {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  cursor: pointer;
+}
+body .firstPage .nav-arrow-down span::after {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -8px;
+  content: "";
+  border-left: 5px solid black;
+  border-bottom: 5px solid black;
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+  animation: sdb 3s infinite;
+}
+body #headerBack {
+  background-color: whitesmoke;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+body #headerBack ul {
+  text-align: center;
+  font-size: 2em;
+  overflow: hidden;
+  align-self: center;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 40vh;
+  position: sticky;
+  font-family: "defaultFont", serif;
+}
+body #headerBack ul li {
+  list-style: none;
+  transition: all 0.8s;
+}
+body #headerBack ul li:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+body #headerBack ul li.invisible {
+  visibility: hidden;
+}
+body #headerBack ul li.active {
+  color: red;
+  opacity: 0.5;
+}
+body #headerBack ul li.noHeight {
+  transition: all 0.8s;
+  height: 0 !important;
+  overflow: hidden;
+}
+body #headerBack .imgContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 50vw;
+}
+body #headerBack .imgContainer::-webkit-scrollbar {
+  display: none;
+}
+body #headerBack .imgContainer .element {
+  width: 50%;
+  transition: all 0.8s;
+  position: absolute;
+  display: flex;
+}
+body #headerBack .imgContainer .element .back {
+  background-color: #faf0e6;
+  width: 885px;
+  position: absolute;
+  margin-top: -5%;
+  z-index: 1;
+  right: -5%;
+  height: 100%;
+}
+body #headerBack .imgContainer .element.active {
+  transform: translateY(0%);
+  animation: 1s bottomToMiddle ease-in-out;
+}
+body #headerBack .imgContainer .element.bottom {
+  display: none !important;
+  transform: translateY(200%);
+}
+body #headerBack .imgContainer .element.top {
+  animation: 1s middleToTop ease-in-out;
+  transform: translateY(-200%);
+}
+body #headerBack .imgContainer .element img {
+  z-index: 2;
+  height: 40vh;
+}
+body #headerBack .imgContainer .element .text {
+  overflow: hidden;
+  margin-left: 5%;
+  text-align: justify;
+  height: 40vh;
+  width: max-content;
+  z-index: 2;
+  font-family: "defaultFont", serif;
+}
+
+@keyframes middleToTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+@keyframes bottomToMiddle {
+  0% {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes activeToHidden {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes sdb {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(-45deg) translate(-5px, 5px);
+  }
+  40% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}
+@keyframes opacityChange {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@font-face {
+  font-family: "defaultFont";
+  font-style: italic;
+  src: url("../assets/fonts/Orkney Regular.ttf");
+}
+
+/*# sourceMappingURL=style.css.map */

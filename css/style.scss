@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: './assets/fonts/Champagne & Limousines.ttf', serif;
+  overflow: hidden;
+  background-color: #0D0D0C;
+
+  .firstPage {
+    position: absolute;
+    background-color: whitesmoke;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    font-family: 'defaultFont', serif;
+    transform: translateY(0%);
+    justify-content: center;
+    display: flex;
+
+    &.hidden {
+      transform: translateY(-100%);
+      animation: 1s activeToHidden;
+    }
+
+    .textContainer {
+      position: absolute;
+      top: 40%;
+      width: fit-content;
+      animation: opacityChange 3s ease-in;
+
+      #title {
+        font-size: 5em;
+        color: #120D16;
+        filter: blur(0.5px);
+        text-align: left;
+        align-self: center;
+      }
+
+      .textChange {
+        text-align: left;
+        align-self: center;
+      }
+
+      .border {
+        height: 1px;
+        width: 70%;
+        background-color: black;
+        transform: translateX(-50%);
+        margin-left: 50%;
+      }
+    }
+    .nav-arrow-down {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      cursor: pointer;
+
+      span {
+        &::after {
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin: -10px 0 0 -8px;
+          content: "";
+          border-left: 5px solid black;
+          border-bottom: 5px solid black;
+          transform: rotate(-45deg);
+          box-sizing: border-box;
+          animation: sdb 3s infinite;
+        }
+      }
+    }
+  }
+
+  #headerBack {
+    background-color: whitesmoke;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+
+    ul {
+      text-align: center;
+      font-size: 2em;
+      overflow: hidden;
+      align-self: center;
+      width: 35vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 40vh;
+      position: sticky;
+      font-family: 'defaultFont', serif;
+
+      li {
+        list-style: none;
+        transition: all 0.8s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.2);
+        }
+
+        &.invisible {
+          visibility: hidden;
+        }
+
+        &.active {
+          color: red;
+          opacity: 0.5;
+        }
+
+        &.noHeight {
+          transition: all 0.8s;
+          height: 0 !important;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .imgContainer {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      overflow-y: scroll;
+      width: 50vw;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .element {
+        width: 50%;
+        transition: all 0.8s;
+        position: absolute;
+        display: flex;
+
+        .back {
+          background-color: #faf0e6;
+          width: 885px;
+          position: absolute;
+          margin-top: -5%;
+          z-index: 1;
+          right: -5%;
+          height: 100%;
+        }
+
+        &.active {
+          transform: translateY(0%);
+          animation: 1s bottomToMiddle ease-in-out;
+        }
+
+        &.bottom {
+          display: none !important;
+          transform: translateY(200%);
+        }
+
+        &.top {
+          animation: 1s middleToTop ease-in-out;
+          transform: translateY(-200%);
+        }
+
+        img {
+          z-index: 2;
+          height: 40vh;
+        }
+
+        .text {
+          overflow: hidden;
+          margin-left: 5%;
+          text-align: justify;
+          height: 40vh;
+          width: max-content;
+          z-index: 2;
+          font-family: 'defaultFont', serif;
+        }
+      }
+    }
+  }
+}
+
+@keyframes middleToTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes bottomToMiddle {
+  0% {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-0%);
+  }
+}
+
+@keyframes activeToHidden {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sdb {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(-45deg) translate(-5px, 5px);
+  }
+  40% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}
+
+@keyframes opacityChange {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@font-face {
+  font-family: "defaultFont";
+  font-style: italic;
+  src: url('../assets/fonts/Orkney Regular.ttf');
+}

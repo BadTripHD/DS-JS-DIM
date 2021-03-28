@@ -26,7 +26,7 @@ body .firstPage .textContainer {
   position: absolute;
   top: 40%;
   width: fit-content;
-  animation: opacityChange 3s ease-in;
+  animation: opacityChangeHigh 3s ease-in;
 }
 body .firstPage .textContainer #title {
   font-size: 5em;
@@ -116,6 +116,15 @@ body #headerBack .imgContainer {
 body #headerBack .imgContainer::-webkit-scrollbar {
   display: none;
 }
+body #headerBack .imgContainer .beerDetailsBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  display: none;
+}
 body #headerBack .imgContainer .beerDetails {
   position: absolute;
   width: 50vw;
@@ -124,6 +133,12 @@ body #headerBack .imgContainer .beerDetails {
   margin: 0 1.5% 0 1.5%;
   z-index: 2;
   display: none;
+  opacity: 0;
+}
+body #headerBack .imgContainer .beerDetails.active {
+  display: block;
+  animation: opacityChangeHigh 0.5s ease-in-out;
+  opacity: 1;
 }
 body #headerBack .imgContainer .element {
   width: 50%;
@@ -247,12 +262,20 @@ body #headerBack .imgContainer .element .backRightLeft {
     transform: rotate(-45deg) translate(0, 0);
   }
 }
-@keyframes opacityChange {
+@keyframes opacityChangeHigh {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes opacityChangeLow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 @font-face {

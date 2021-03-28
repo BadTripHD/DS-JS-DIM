@@ -28,6 +28,7 @@
                 <li class="noHeight">Idk</li>
             </ul>
             <div class="imgContainer">
+                <div class="beerDetailsBackground"></div>
                 <div class="beerDetails"></div>
                 <div class="element active" id="introduction">
                     <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
@@ -38,7 +39,7 @@
                 </div>
                 <div class="element bottom" id="beers">
                     <% beers.forEach(function(beer) { %>
-                        <div class="card">
+                        <div class="card" id="<%= beer.id %>">
                             <div class="beerName"><%= beer.name %></div>
                             <div class="beerInfo">
                                 <div class="beerABV"><%= beer.abv %>°</div>

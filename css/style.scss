@@ -27,7 +27,7 @@ body {
       position: absolute;
       top: 40%;
       width: fit-content;
-      animation: opacityChange 3s ease-in;
+      animation: opacityChangeHigh 3s ease-in;
 
       #title {
         font-size: 5em;
@@ -132,6 +132,16 @@ body {
         display: none;
       }
 
+      .beerDetailsBackground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        z-index: 1;
+        display: none;
+      }
+
       .beerDetails {
         position: absolute;
         width: 50vw;
@@ -140,6 +150,13 @@ body {
         margin: 0 1.5% 0 1.5%;
         z-index: 2;
         display: none;
+        opacity: 0;
+
+        &.active {
+          display: block;
+          animation: opacityChangeHigh 0.5s ease-in-out;
+          opacity: 1;
+        }
       }
 
       .element {
@@ -289,12 +306,21 @@ body {
   }
 }
 
-@keyframes opacityChange {
+@keyframes opacityChangeHigh {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes opacityChangeLow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

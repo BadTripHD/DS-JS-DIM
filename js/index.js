@@ -4,9 +4,16 @@ const imgContainer = document.querySelector('.imgContainer');
 const arrow = document.querySelector('.nav-arrow-down');
 const firstPage = document.querySelector('.firstPage');
 let textChange = document.querySelector('.textChange');
+let beerDetailsBackground = document.querySelector('.beerDetailsBackground');
+const cards = document.querySelectorAll('.card');
 const fontSizeTable = ['0em', '0.4em', '0.6em', '1em', '0.6em', '0.4em', '0em'];
+const cardDetail = document.querySelector('.beerDetails');
 let lastActiveElement = null;
-let words = ['A place where the beer flows','Created by passionate experts','Amber, brown, blonde, black... The difficult choice'],
+let words = [
+        'A place where the beer flows',
+        'Created by passionate experts',
+        'Amber, brown, blonde, black... The difficult choice'
+    ],
     part,
     i = 0,
     offset = 0,
@@ -15,6 +22,11 @@ let words = ['A place where the beer flows','Created by passionate experts','Amb
     skip_count = 0,
     skip_delay = 50,
     speed = 50;
+const myHeaders = new Headers();
+const myInit = { method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' };
 
 document.addEventListener("DOMContentLoaded", function() {
     wordflick();
@@ -32,6 +44,21 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+    for(let card of cards) {
+        card.addEventListener("click", function() {
+            fetch('beers/' + this.id, myInit)
+            .then(function(response) {
+                console.log(response);
+            })
+            cardDetail.classList.add('active');
+            beerDetailsBackground.style.display = 'block';
+        });
+    }
+    beerDetailsBackground.addEventListener("click", function () {
+        beerDetailsBackground.style.display = 'none';
+        cardDetail.classList.remove('active');
+        cardDetail.classList.add('nonActive');
+    })
 });
 
 function searchActiveElement() {

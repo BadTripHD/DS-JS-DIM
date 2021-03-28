@@ -6,6 +6,14 @@ const fs = require('fs');
 const axios = require("axios");
 const API_BASE_URL = "https://api.punkapi.com/v2/"
 const BEERS_FILE_PATH = "beers.json"
+const bodyParser = require('body-parser')
+
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.set("view engine", "ejs")
 app.use("/css", express.static(__dirname + "/css"))
@@ -79,9 +87,9 @@ app.post("/beers/:id", async (req, res) => {
 })
 
 //----------------UPDATE BEERS ---------------------->
-app.put("/beers/:id", async (req, res) => {
+app.put("/beers/:id", urlencodedParser, async (req, res) => {
     try {
-        let beerData = req.query
+        let beerData = req.body
         let beers = await getRepo()
         for(let beer of beers){
             if(beer.id === parseInt(req.params.id)){
@@ -103,9 +111,9 @@ app.put("/beers/:id", async (req, res) => {
 })
 
 //----------------CREATE BEERS ---------------------->
-app.post("/add", async (req, res) => {
+app.post("/add", urlencodedParser, async (req, res) => {
     try {
-        let beerData = req.query
+        let beerData = req.body
         let beers = await getRepo()
         let lastBeerId = beers[beers.length - 1].id
         let beer = {

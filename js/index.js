@@ -22,6 +22,11 @@ let words = [
     skip_count = 0,
     skip_delay = 50,
     speed = 50;
+const myHeaders = new Headers();
+const myInit = { method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' };
 
 document.addEventListener("DOMContentLoaded", function() {
     wordflick();
@@ -41,6 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     for(let card of cards) {
         card.addEventListener("click", function() {
+            fetch('beers/' + this.id, myInit)
+            .then(function(response) {
+                console.log(response);
+            })
             cardDetail.classList.add('active');
             beerDetailsBackground.style.display = 'block';
         });

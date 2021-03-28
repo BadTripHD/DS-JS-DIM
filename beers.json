@@ -3146,17 +3146,5 @@
     ],
     "brewers_tips": "Make sure you have plenty of room in the fermenter. Beers containing wheat can often foam aggressively during fermentation.",
     "contributed_by": "Sam Mason <samjbmason>"
-  },
-  {
-    "id": 26,
-    "name": "Ringale IPA",
-    "first_brewed": "02/2021",
-    "description": "Trop bon",
-    "tagline": "The best",
-    "abv": 6.4,
-    "ebc": 15,
-    "volume": {
-      "value": "30"
-    }
   }
 ]

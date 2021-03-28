@@ -68,7 +68,7 @@ app.get("/beers/:id", async (req, res) => {
 
 //----------------DELETE BEERS ---------------------->
 app.post("/beers/:id", (req, res) => {
-    let
+    //let
 })
 //----------------UPDATE BEERS ---------------------->
 

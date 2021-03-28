@@ -22,11 +22,13 @@ let words = [
     skip_count = 0,
     skip_delay = 50,
     speed = 50;
-const myHeaders = new Headers();
-const myInit = { method: 'GET',
-    headers: myHeaders,
-    mode: 'cors',
-    cache: 'default' };
+const beerImg = document.querySelector('.beerImg');
+const beerVolume = document.querySelector('.beerVolume');
+const beerTagline = document.querySelector('.beerTagline');
+const beerName = document.querySelector('.beerName');
+const beerIngredient = document.querySelector('.beerIngredient');
+const add = document.querySelector('.add');
+const beerForm = document.querySelector('.beerForm');
 
 document.addEventListener("DOMContentLoaded", function() {
     wordflick();
@@ -46,9 +48,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     for(let card of cards) {
         card.addEventListener("click", function() {
-            fetch('beers/' + this.id, myInit)
+            fetch('beers/' + this.id)
             .then(function(response) {
-                console.log(response);
+                return response.json();
+            }).then(function(objet) {
+                beerImg.style.backgroundImage = 'url(' + objet[0].image_url + ')';
+                beerName.innerHTML = objet[0].name;
+                beerVolume.innerHTML = objet[0].volume.value + " " + objet[0].volume.unit;
+                beerTagline.innerHTML = objet[0].tagline;
             })
             cardDetail.classList.add('active');
             beerDetailsBackground.style.display = 'block';
@@ -56,9 +63,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     beerDetailsBackground.addEventListener("click", function () {
         beerDetailsBackground.style.display = 'none';
-        cardDetail.classList.remove('active');
-        cardDetail.classList.add('nonActive');
+        if(cardDetail.classList.contains('active')) {
+            cardDetail.classList.remove('active');
+        }
+        if(beerForm.classList.contains('active')) {
+            beerForm.classList.remove('active');
+        }
     })
+    add.addEventListener("click", function () {
+        beerForm.classList.add('active');
+        beerDetailsBackground.style.display = 'block';
+    });
 });
 
 function searchActiveElement() {
@@ -105,6 +120,12 @@ function menuClick(elementClicked) {
         imgContainer.children[searchActiveElementTwo()].classList.remove('active');
         document.querySelector("#" + elementClicked.innerHTML.toLowerCase()).classList.remove("bottom");
         document.querySelector("#" + elementClicked.innerHTML.toLowerCase()).classList.add("active");
+
+        if(imgContainer.children[searchActiveElementTwo()].id === 'beers') {
+            add.style.display = 'block';
+        } else {
+            add.style.display = 'none';
+        }
     }
 
     for(let i = 0; i < gap; i++) {

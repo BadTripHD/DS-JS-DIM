@@ -125,6 +125,70 @@ body #headerBack .imgContainer .beerDetailsBackground {
   z-index: 1;
   display: none;
 }
+body #headerBack .imgContainer .beerForm {
+  position: absolute;
+  width: 25vw;
+  height: 75%;
+  background-color: #faf0e6;
+  margin: 0 1.5% 0 1.5%;
+  z-index: 2;
+  display: none;
+  opacity: 0;
+  align-self: center;
+}
+body #headerBack .imgContainer .beerForm form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+body #headerBack .imgContainer .beerForm form div {
+  align-self: center;
+  width: 90%;
+  text-align: right;
+}
+body #headerBack .imgContainer .beerForm form div label {
+  margin-right: 5%;
+  vertical-align: middle;
+}
+body #headerBack .imgContainer .beerForm form div input {
+  width: 70%;
+  height: 150%;
+  border: none;
+}
+body #headerBack .imgContainer .beerForm form div textarea {
+  width: 70%;
+  height: 150%;
+  border: none;
+  resize: none;
+}
+body #headerBack .imgContainer .beerForm form div button {
+  background-color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+}
+body #headerBack .imgContainer .beerForm form div.sliderContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+body #headerBack .imgContainer .beerForm form div.sliderContainer .slider {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+body #headerBack .imgContainer .beerForm form div.sliderContainer .slider input {
+  border: none;
+  width: 100%;
+}
+body #headerBack .imgContainer .beerForm.active {
+  display: flex;
+  animation: opacityChangeHigh 0.5s ease-in-out;
+  opacity: 1;
+}
 body #headerBack .imgContainer .beerDetails {
   position: absolute;
   width: 50vw;
@@ -136,9 +200,39 @@ body #headerBack .imgContainer .beerDetails {
   opacity: 0;
 }
 body #headerBack .imgContainer .beerDetails.active {
-  display: block;
+  display: flex;
   animation: opacityChangeHigh 0.5s ease-in-out;
   opacity: 1;
+}
+body #headerBack .imgContainer .beerDetails .beerImg {
+  background-image: url(https://images.punkapi.com/v2/keg.png);
+  height: 70%;
+  width: 25%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  margin-left: 5%;
+}
+body #headerBack .imgContainer .beerDetails .beerText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 70%;
+}
+body #headerBack .imgContainer .beerDetails .beerText .beerTitle {
+  align-self: center;
+  text-align: center;
+}
+body #headerBack .imgContainer .beerDetails .beerText .beerTitle .beerName {
+  font-size: 2em;
+  align-self: center;
+}
+body #headerBack .imgContainer .beerDetails .beerText .beerTitle .beerTagline {
+  align-self: center;
+}
+body #headerBack .imgContainer .beerDetails i {
+  font-size: 2em;
+  margin: 2% 2% 0 0;
 }
 body #headerBack .imgContainer .element {
   width: 50%;
@@ -221,6 +315,13 @@ body #headerBack .imgContainer .element .text {
 }
 body #headerBack .imgContainer .element .backRightLeft {
   margin: 5% 0 0 5%;
+}
+body .add {
+  display: none;
+  font-size: 4em;
+  align-self: center;
+  width: 15%;
+  text-align: center;
 }
 
 @keyframes middleToTop {

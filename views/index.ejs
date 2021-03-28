@@ -29,7 +29,56 @@
             </ul>
             <div class="imgContainer">
                 <div class="beerDetailsBackground"></div>
-                <div class="beerDetails"></div>
+                <div class="beerForm">
+                    <form action="/" method="post">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name">
+                        </div>
+                        <div>
+                            <label for="name">Tagline</label>
+                            <input type="text" id="name" name="tagline">
+                        </div>
+                        <div>
+                            <label for="name">ABV</label>
+                            <input type="text" id="name" name="ebc">
+                        </div>
+                        <div class="sliderContainer">
+                            <label for="mail">EBC</label>
+                            <div class="slider">
+                                <input type="range" id="name" name="ebc" min="1" max="40" value="20" oninput="this.nextElementSibling.value = this.value">
+                                <output>20</output>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="msg">Description</label>
+                            <textarea id="msg" name="description"></textarea>
+                        </div>
+                        <div>
+                            <label for="name">First_brewed</label>
+                            <input type="text" id="name" name="first_brewed">
+                        </div>
+                        <div>
+                            <label for="name">Volume</label>
+                            <input type="text" id="name" name="volume">
+                        </div>
+                        <div class="button">
+                            <button type="submit">Envoyer le message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="beerDetails">
+                    <div class="beerImg"></div>
+                    <div class="beerText">
+                        <div class="beerTitle">
+                            <div class="beerName"></div>
+                            <div class="beerTagline"></div>
+                        </div>
+                        <div class="beerVolume"></div>
+                        <div class="beerIngredient"></div>
+                    </div>
+                    <i class="far fa-trash-alt"></i>
+                </div>
                 <div class="element active" id="introduction">
                     <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
                     <div class="text">
@@ -71,6 +120,7 @@
                     </div>
                 </div>
             </div>
+            <i class="fas fa-plus add"></i>
         </div>
 
         <script src="./js/index.js"></script>

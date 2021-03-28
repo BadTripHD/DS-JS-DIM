@@ -142,6 +142,81 @@ body {
         display: none;
       }
 
+      .beerForm {
+        position: absolute;
+        width: 25vw;
+        height: 75%;
+        background-color: #faf0e6;
+        margin: 0 1.5% 0 1.5%;
+        z-index: 2;
+        display: none;
+        opacity: 0;
+        align-self: center;
+
+        form {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          div {
+            align-self: center;
+            width: 90%;
+            text-align: right;
+
+            label {
+              margin-right: 5%;
+              vertical-align: middle;
+            }
+
+            input {
+              width: 70%;
+              height: 150%;
+              border: none;
+            }
+
+            textarea {
+              width: 70%;
+              height: 150%;
+              border: none;
+              resize: none;
+            }
+
+            button {
+              background-color: white;
+              border: none;
+              padding: 15px 32px;
+              text-align: center;
+              cursor: pointer;
+              border-radius: 50px;
+            }
+
+            &.sliderContainer {
+              display: flex;
+              justify-content: flex-end;
+
+              .slider {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+
+                input {
+                  border: none;
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+
+        &.active {
+          display: flex;
+          animation: opacityChangeHigh 0.5s ease-in-out;
+          opacity: 1;
+        }
+      }
+
       .beerDetails {
         position: absolute;
         width: 50vw;
@@ -153,9 +228,45 @@ body {
         opacity: 0;
 
         &.active {
-          display: block;
+          display: flex;
           animation: opacityChangeHigh 0.5s ease-in-out;
           opacity: 1;
+        }
+
+        .beerImg {
+          background-image: url(https://images.punkapi.com/v2/keg.png);
+          height: 70%;
+          width: 25%;
+          background-size: contain;
+          background-repeat: no-repeat;
+          align-self: center;
+          margin-left: 5%;
+        }
+
+        .beerText {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          width: 70%;
+
+          .beerTitle {
+            align-self: center;
+            text-align: center;
+
+            .beerName {
+              font-size: 2em;
+              align-self: center;
+            }
+
+            .beerTagline {
+              align-self: center;
+            }
+          }
+        }
+
+        i {
+          font-size: 2em;
+          margin: 2% 2% 0 0;
         }
       }
 
@@ -257,6 +368,14 @@ body {
         }
       }
     }
+  }
+
+  .add {
+    display: none;
+    font-size: 4em;
+    align-self: center;
+    width: 15%;
+    text-align: center;
   }
 }
 

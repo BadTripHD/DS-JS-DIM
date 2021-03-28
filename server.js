@@ -8,7 +8,8 @@ const BEERS_FILE_PATH = "beers.json"
 
 app.set("view engine", "ejs")
 app.use("/css", express.static(__dirname + "/css"))
-app.use("js", express.static(__dirname + "/css"))
+app.use("/js", express.static(__dirname + "/js"))
+app.use("/assets", express.static(__dirname + "/assets"))
 
 axios.get(API_BASE_URL + "beers")
     .then(response =>{
@@ -32,8 +33,8 @@ axios.get(API_BASE_URL + "beers")
 //----------------MAIN PAGE---------------------->
 
 app.get("/", (req, res) => {
-    let rawdata = fs.readFileSync("beers.json")
-    let beers = JSON.parse(rawdata)
+    let rawData = fs.readFileSync("beers.json")
+    let beers = JSON.parse(rawData)
     res.render("index", {
         beers: beers
     })

@@ -1,5 +1,6 @@
 //----------------CONST AND USE---------------------->
 const express = require("express")
+var absorb = require('absorb');
 const app = express()
 const fs = require('fs');
 const axios = require("axios");
@@ -38,7 +39,6 @@ async function getRepo() {
 }
 
 //----------------MAIN PAGE---------------------->
-
 app.get("/", async (req, res) => {
     try{
         let beers = await getRepo()
@@ -54,10 +54,9 @@ app.get("/", async (req, res) => {
 })
 
 //----------------GET BEERS BY ID---------------------->
-
 app.get("/beers/:id", async (req, res) => {
-    let beers = await getRepo()
     try{
+        let beers = await getRepo()
         let beer = beers.filter(beer => beer.id === parseInt(req.params.id))
         res.json(beer)
     }
@@ -67,9 +66,68 @@ app.get("/beers/:id", async (req, res) => {
 })
 
 //----------------DELETE BEERS ---------------------->
-app.post("/beers/:id", (req, res) => {
-    let
+app.post("/beers/:id", async (req, res) => {
+    try {
+        let allBeers = await getRepo()
+        let beers = allBeers.filter(beer => beer.id !== parseInt(req.params.id))
+        await fs.promises.writeFile(BEERS_FILE_PATH, JSON.stringify(beers, null, 2))
+        res.redirect("/")
+    }
+    catch (e) {
+        res.json({error: e})
+    }
 })
+
 //----------------UPDATE BEERS ---------------------->
+app.put("/beers/:id", async (req, res) => {
+    try {
+        let beerData = req.query
+        let beers = await getRepo()
+        for(let beer of beers){
+            if(beer.id === parseInt(req.params.id)){
+                beer.name = beerData.name
+                beer.first_brewed = beerData.first_brewed
+                beer.description = beerData.description
+                beer.tagline = beerData.tagline
+                beer.abv = parseFloat(beerData.abv)
+                beer.ebc = parseFloat(beerData.ebc)
+                beer.volume["value"] = beerData.volume
+            }
+        }
+        await fs.promises.writeFile(BEERS_FILE_PATH, JSON.stringify(beers, null, 2))
+        res.redirect("/")
+    }
+    catch (e) {
+        res.json({error: e})
+    }
+})
+
+//----------------CREATE BEERS ---------------------->
+app.post("/add", async (req, res) => {
+    try {
+        let beerData = req.query
+        let beers = await getRepo()
+        let lastBeerId = beers[beers.length - 1].id
+        let beer = {
+            "id": lastBeerId + 1,
+            "name": beerData.name,
+            "first_brewed": beerData.first_brewed,
+            "description": beerData.description,
+            "tagline": beerData.tagline,
+            "abv": beerData.abv,
+            "ebc": beerData.ebc,
+            "volume": {
+                "value": beerData.volume
+            }
+        }
+        beers.push(beer)
+
+        await fs.promises.writeFile(BEERS_FILE_PATH, JSON.stringify(beers, null, 2))
+        res.redirect("/")
+    }
+    catch (e) {
+        res.json({error: e})
+    }
+})
 
 app.listen(1337)

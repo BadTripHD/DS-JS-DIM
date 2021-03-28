@@ -13,31 +13,35 @@ app.use("/assets", express.static(__dirname + "/assets"))
 axios.get(API_BASE_URL + "beers")
     .then(response =>{
         let beers = JSON.stringify(response.data, null, 2)
-        fs.access(BEERS_FILE_PATH, fs.F_OK, (err) =>{
-            if(err){
-                console.log(err)
-                return
-            }
-
+        if(!fs.existsSync(BEERS_FILE_PATH)){
             fs.writeFileSync(BEERS_FILE_PATH, beers, (error) => {
                 if (error) throw error
                 console.log("Data write in json file")
             })
-        })
+        }
     })
     .catch(error => {
         console.log(error)
     })
 
+let rawData = fs.readFileSync("beers.json")
+let beers = JSON.parse(rawData)
+
 //----------------MAIN PAGE---------------------->
 
 app.get("/", (req, res) => {
-    let rawData = fs.readFileSync("beers.json")
-    let beers = JSON.parse(rawData)
     res.render("index", {
         beers: beers
     })
+})
 
+//----------------GET BEERS BY ID---------------------->
+
+app.get("/beers/:id", (req, res) => {
+    for(let beer of beers)
+        if (beer.id === parseInt(req.params.id))
+            res.json(beer)
+    res.json({error: "beers not found"})
 })
 
 app.listen(1337)

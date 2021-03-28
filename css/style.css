@@ -180,6 +180,9 @@ body #headerBack .imgContainer .beerForm form div.sliderContainer .slider {
   flex-direction: column;
   width: 70%;
 }
+body #headerBack .imgContainer .beerForm form div.sliderContainer .slider output {
+  align-self: center;
+}
 body #headerBack .imgContainer .beerForm form div.sliderContainer .slider input {
   border: none;
   width: 100%;
@@ -230,9 +233,13 @@ body #headerBack .imgContainer .beerDetails .beerText .beerTitle .beerName {
 body #headerBack .imgContainer .beerDetails .beerText .beerTitle .beerTagline {
   align-self: center;
 }
+body #headerBack .imgContainer .beerDetails .beerText .beerVolume {
+  align-self: center;
+}
 body #headerBack .imgContainer .beerDetails i {
   font-size: 2em;
   margin: 2% 2% 0 0;
+  cursor: pointer;
 }
 body #headerBack .imgContainer .element {
   width: 50%;
@@ -241,7 +248,7 @@ body #headerBack .imgContainer .element {
   display: flex;
   height: 40vh;
 }
-body #headerBack .imgContainer .element#introduction {
+body #headerBack .imgContainer .element#introduction, body #headerBack .imgContainer .element#end {
   background-color: #faf0e6;
   z-index: 1;
 }
@@ -312,6 +319,7 @@ body #headerBack .imgContainer .element .text {
   z-index: 2;
   font-family: "defaultFont", serif;
   margin: 5%;
+  font-size: 1.3em;
 }
 body #headerBack .imgContainer .element .backRightLeft {
   margin: 5% 0 0 5%;
@@ -322,6 +330,7 @@ body .add {
   align-self: center;
   width: 15%;
   text-align: center;
+  cursor: pointer;
 }
 
 @keyframes middleToTop {

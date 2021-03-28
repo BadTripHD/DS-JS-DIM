@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,17 +19,15 @@
         </div>
         <div id="headerBack">
             <ul>
-                <li class="noHeight">Terms</li>
-                <li>Idk</li>
-                <li>Contact</li>
+                <li class="noHeight">Beers</li>
+                <li>End</li>
                 <li class="active">Introduction</li>
                 <li>Beers</li>
-                <li>Terms</li>
-                <li class="noHeight">Idk</li>
+                <li class="noHeight">End</li>
             </ul>
             <div class="imgContainer">
                 <div class="beerDetailsBackground"></div>
-                <div class="beerForm">
+                <div class="beerForm" id="beerFormAdd">
                     <form action="/add" method="post">
                         <div>
                             <label for="name">Name</label>
@@ -67,6 +65,45 @@
                         </div>
                     </form>
                 </div>
+                <div class="beerForm" id="beerFormUpdate">
+                    <form action="/update" method="post">
+                        <input type="text" id="idUpdate" name="id" style="display: none">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="nameUpdate" name="name">
+                        </div>
+                        <div>
+                            <label for="name">Tagline</label>
+                            <input type="text" id="taglineUpdate" name="tagline">
+                        </div>
+                        <div>
+                            <label for="name">ABV</label>
+                            <input type="text" id="abvUpdate" name="abv">
+                        </div>
+                        <div class="sliderContainer">
+                            <label for="mail">EBC</label>
+                            <div class="slider">
+                                <input type="range" id="ebcUpdate" name="ebc" min="1" max="40" value="20" oninput="this.nextElementSibling.value = this.value">
+                                <output>20</output>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="msg">Description</label>
+                            <textarea id="descriptionUpdate" name="description"></textarea>
+                        </div>
+                        <div>
+                            <label for="name">First_brewed</label>
+                            <input type="text" id="first_brewedUpdate" name="first_brewed">
+                        </div>
+                        <div>
+                            <label for="name">Volume</label>
+                            <input type="text" id="volumeUpdate" name="volume">
+                        </div>
+                        <div class="button">
+                            <button type="submit">Envoyer le message</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="beerDetails">
                     <div class="beerImg"></div>
                     <div class="beerText">
@@ -74,17 +111,19 @@
                             <div class="beerName"></div>
                             <div class="beerTagline"></div>
                         </div>
+                        <div class="beerDescription"></div>
+
                         <div class="beerVolume"></div>
-                        <div class="beerIngredient"></div>
                     </div>
-                    <i class="far fa-trash-alt"></i>
+                    <i class="far fa-edit edit"></i>
+                    <i class="far fa-trash-alt delete"></i>
                 </div>
                 <div class="element active" id="introduction">
                     <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
                     <div class="text">
-                        Si vous êtes ici, ce n'est pas pour rien.
-                        Une force puissante et forte en houblon vous a y amené, mais n'ayez pas peur.
-                        Prenez un peu de temps et profitez des merveilles que peu proposer ce site.
+                        Si vous êtes ici, ce n'est pas pour rien.<br>
+                        Une force puissante et forte en houblon vous a y amené, mais n'ayez pas peur.<br>
+                        Prenez un peu de temps et profitez des merveilles que peu proposer ce site.<br>
                         Bonne visite à vous, jeune visiteur.
                     </div>
                 </div>
@@ -100,25 +139,11 @@
                         </div>
                     <% }); %>
                 </div>
-                <div class="element bottom" id="contact">
-                    <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
-                    <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
-                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
-                    </div>
-                </div>
-                <div class="element bottom" id="idk">
-                    <img class="backRightLeft" src="./assets/img/beers.jpg" alt="">
-                    <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
-                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
-                    </div>
-                </div>
-                <div class="element bottom" id="terms">
+                <div class="element bottom" id="end">
                     <img class="backRightLeft" src="./assets/img/londonPride.jpg" alt="">
                     <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
-                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
+                        Merci d'avoir passé du temps sur ce site.<br>
+                        J'aurai aimé vous en montrer plus mais le temps en a décidé autrement
                     </div>
                 </div>
             </div>

@@ -201,6 +201,10 @@ body {
                 flex-direction: column;
                 width: 70%;
 
+                output {
+                  align-self: center;
+                }
+
                 input {
                   border: none;
                   width: 100%;
@@ -262,11 +266,16 @@ body {
               align-self: center;
             }
           }
+
+          .beerVolume {
+            align-self: center;
+          }
         }
 
         i {
           font-size: 2em;
           margin: 2% 2% 0 0;
+          cursor: pointer;
         }
       }
 
@@ -277,7 +286,7 @@ body {
         display: flex;
         height: 40vh;
 
-        &#introduction {
+        &#introduction, &#end {
           background-color: #faf0e6;
           z-index: 1;
         }
@@ -361,6 +370,7 @@ body {
           z-index: 2;
           font-family: 'defaultFont', serif;
           margin: 5%;
+          font-size: 1.3em;
         }
 
         .backRightLeft {
@@ -376,6 +386,7 @@ body {
     align-self: center;
     width: 15%;
     text-align: center;
+    cursor: pointer;
   }
 }
 

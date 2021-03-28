@@ -6,7 +6,7 @@ const firstPage = document.querySelector('.firstPage');
 let textChange = document.querySelector('.textChange');
 let beerDetailsBackground = document.querySelector('.beerDetailsBackground');
 const cards = document.querySelectorAll('.card');
-const fontSizeTable = ['0em', '0.4em', '0.6em', '1em', '0.6em', '0.4em', '0em'];
+const fontSizeTable = ['0.4em', '0.6em', '1em', '0.6em', '0.4em'];
 const cardDetail = document.querySelector('.beerDetails');
 let lastActiveElement = null;
 let words = [
@@ -26,12 +26,27 @@ const beerImg = document.querySelector('.beerImg');
 const beerVolume = document.querySelector('.beerVolume');
 const beerTagline = document.querySelector('.beerTagline');
 const beerName = document.querySelector('.beerName');
-const beerIngredient = document.querySelector('.beerIngredient');
+const beerDescription = document.querySelector('.beerDescription');
 const add = document.querySelector('.add');
-const beerForm = document.querySelector('.beerForm');
+const beerFormAdd = document.querySelector('#beerFormAdd');
+const beerFormUpdate = document.querySelector('#beerFormUpdate');
+const deleteE = document.querySelector('.delete');
+const edit = document.querySelector('.edit');
+const name = document.querySelector('#nameUpdate');
+const tagline = document.querySelector('#taglineUpdate');
+const abv = document.querySelector('#abvUpdate');
+const ebc = document.querySelector('#ebcUpdate');
+const description = document.querySelector('#descriptionUpdate');
+const first_brewed = document.querySelector('#first_brewedUpdate');
+const volume = document.querySelector('#volumeUpdate');
+const idUpdate = document.querySelector('#idUpdate');
+let idBeer = 1;
 
 document.addEventListener("DOMContentLoaded", function() {
+    /** Gestion du changement automatique des phrases (page d'accueil) */
     wordflick();
+
+    /** Quand on clique sur la flèche, la page d'accueil monte */
     arrow.addEventListener("click", function() {
         firstPage.classList.add('hidden');
         for (let i = 0; i < imgContainer.children.length; i++) {
@@ -46,6 +61,11 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+
+    /**
+     * Pour chaque card, on leur assigne un clique event qui permet
+     * d'afficher une page avec de plus amples détails
+     */
     for(let card of cards) {
         card.addEventListener("click", function() {
             fetch('beers/' + this.id)
@@ -54,25 +74,73 @@ document.addEventListener("DOMContentLoaded", function() {
             }).then(function(objet) {
                 beerImg.style.backgroundImage = 'url(' + objet[0].image_url + ')';
                 beerName.innerHTML = objet[0].name;
-                beerVolume.innerHTML = objet[0].volume.value + " " + objet[0].volume.unit;
+                beerVolume.innerHTML = objet[0].volume.value + " L";
                 beerTagline.innerHTML = objet[0].tagline;
+                beerDescription.innerHTML = objet[0].description;
             })
             cardDetail.classList.add('active');
+            cardDetail.id = this.id + "_beerDetail";
             beerDetailsBackground.style.display = 'block';
         });
     }
+
+    /**
+     * Si en clique en dehors d'un form ou du détail d'une bière,
+     * on en sors et retourne à la page de liste des bières
+     */
     beerDetailsBackground.addEventListener("click", function () {
         beerDetailsBackground.style.display = 'none';
         if(cardDetail.classList.contains('active')) {
             cardDetail.classList.remove('active');
         }
-        if(beerForm.classList.contains('active')) {
-            beerForm.classList.remove('active');
+        if(beerFormAdd.classList.contains('active')) {
+            beerFormAdd.classList.remove('active');
+        }
+        if(beerFormUpdate.classList.contains('active')) {
+            beerFormUpdate.classList.remove('active');
         }
     })
+
+    /** Quand on clique sur la croix pour ajouter une bière */
     add.addEventListener("click", function () {
-        beerForm.classList.add('active');
+        beerFormAdd.classList.add('active');
         beerDetailsBackground.style.display = 'block';
+    });
+
+    /**
+     * Quand on clique sur la poubelle pour delete une bière
+     * (dans les détails de la bière)
+     */
+    deleteE.addEventListener("click", function () {
+        fetch('beers/' + cardDetail.id.match('.+?(?=_)')[0],{ method: "POST" })
+        .then(function(response) {
+            location.reload();
+        })
+    });
+
+    /**
+     * Quand on clique sur le crayon pour éditer une bière
+     * (dans les détails de la bière)
+     */
+    edit.addEventListener("click", function () {
+        idBeer = cardDetail.id.match('.+?(?=_)')[0];
+        cardDetail.classList.remove('active');
+        beerFormUpdate.classList.add('active');
+        fetch('beers/' + cardDetail.id.match('.+?(?=_)')[0])
+            .then(function(response) {
+                return response.json();
+            }).then(function(objet) {
+            idUpdate.value = objet[0].id;
+            console.log(idUpdate.value);
+            console.log(objet[0].id);
+            name.value = objet[0].name;
+            tagline.value = objet[0].tagline;
+            abv.value = objet[0].abv;
+            ebc.value = objet[0].ebc;
+            description.value = objet[0].description;
+            first_brewed.value = objet[0].first_brewed;
+            volume.value = objet[0].volume.value;
+        })
     });
 });
 

@@ -1,19 +1,15 @@
 //----------------CONST AND USE---------------------->
 const express = require("express")
-var absorb = require('absorb');
 const app = express()
-const fs = require('fs');
-const axios = require("axios");
+const fs = require('fs')
+const axios = require("axios")
 const API_BASE_URL = "https://api.punkapi.com/v2/"
 const BEERS_FILE_PATH = "beers.json"
 const bodyParser = require('body-parser')
 
 
-// create application/json parser
-var jsonParser = bodyParser.json()
-
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.set("view engine", "ejs")
 app.use("/css", express.static(__dirname + "/css"))
@@ -79,7 +75,7 @@ app.post("/beers/:id", async (req, res) => {
         let allBeers = await getRepo()
         let beers = allBeers.filter(beer => beer.id !== parseInt(req.params.id))
         await fs.promises.writeFile(BEERS_FILE_PATH, JSON.stringify(beers, null, 2))
-        res.redirect("/")
+        res.redirect('/')
     }
     catch (e) {
         res.json({error: e})
@@ -87,12 +83,12 @@ app.post("/beers/:id", async (req, res) => {
 })
 
 //----------------UPDATE BEERS ---------------------->
-app.put("/beers/:id", urlencodedParser, async (req, res) => {
+app.post("/update", urlencodedParser, async (req, res) => {
     try {
         let beerData = req.body
         let beers = await getRepo()
         for(let beer of beers){
-            if(beer.id === parseInt(req.params.id)){
+            if(beer.id === parseInt(beerData.id)){
                 beer.name = beerData.name
                 beer.first_brewed = beerData.first_brewed
                 beer.description = beerData.description

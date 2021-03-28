@@ -4,7 +4,6 @@
 }
 
 body {
-  font-family: './assets/fonts/Champagne & Limousines.ttf', serif;
   overflow: hidden;
   background-color: #0D0D0C;
 
@@ -133,20 +132,77 @@ body {
         display: none;
       }
 
+      .beerDetails {
+        position: absolute;
+        width: 50vw;
+        height: 50%;
+        background-color: #faf0e6;
+        margin: 0 1.5% 0 1.5%;
+        z-index: 2;
+        display: none;
+      }
+
       .element {
         width: 50%;
         transition: all 0.8s;
         position: absolute;
         display: flex;
+        height: 40vh;
 
-        .back {
+        &#introduction {
           background-color: #faf0e6;
-          width: 885px;
-          position: absolute;
-          margin-top: -5%;
           z-index: 1;
-          right: -5%;
-          height: 100%;
+        }
+
+        &#beers {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          height: 80vh;
+          margin-top: 10vh;
+          margin-bottom: 10vh;
+          overflow-y: scroll;
+          padding: 0 1.5% 0 1.5%;
+
+          &.flouted {
+            filter: blur(0.8px);
+            opacity: 0.5;
+          }
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          .card {
+            width: 25%;
+            height: 15vh;
+            margin: 2.5%;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            animation: 1s all ease-in-out;
+            border: solid 1px black;
+
+            &:hover {
+              transform: scale(1.1);
+              cursor: pointer;
+            }
+
+            .beerName {
+              align-self: center;
+              text-align: center;
+              margin: 0 10px 0 10px;
+            }
+
+            .beerInfo {
+              display: flex;
+              justify-content: space-evenly;
+            }
+
+            .beerABV {
+              align-self: center;
+            }
+          }
         }
 
         &.active {
@@ -171,12 +227,16 @@ body {
 
         .text {
           overflow: hidden;
-          margin-left: 5%;
           text-align: justify;
-          height: 40vh;
+          height: calc(100% - 10vh);
           width: max-content;
           z-index: 2;
           font-family: 'defaultFont', serif;
+          margin: 5%;
+        }
+
+        .backRightLeft {
+          margin: 5% 0 0 5%;
         }
       }
     }
@@ -240,6 +300,6 @@ body {
 
 @font-face {
   font-family: "defaultFont";
-  font-style: italic;
-  src: url('../assets/fonts/Orkney Regular.ttf');
+  font-style: normal;
+  src: url('./assets/fonts/orkney_regular.ttf');
 }

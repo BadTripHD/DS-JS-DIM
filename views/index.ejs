@@ -11,7 +11,7 @@
         <div class="firstPage">
             <div class="textContainer">
                 <div id="title">LA BINOUSERIE</div>
-                <div class="textChange">truc</div>
+                <div class="textChange"></div>
             </div>
             <a class="nav-arrow-down">
                 <span></span>
@@ -28,8 +28,8 @@
                 <li class="noHeight">Idk</li>
             </ul>
             <div class="imgContainer">
+                <div class="beerDetails"></div>
                 <div class="element active" id="introduction">
-                    <div class="back"></div>
                     <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
                     <div class="text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
@@ -37,11 +37,16 @@
                     </div>
                 </div>
                 <div class="element bottom" id="beers">
-                    <img class="backRightLeft" src="./assets/img/londonPride.jpg" alt="">
-                    <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lectus libero, lobortis non sapien in, interdum pharetra turpis. Ut eu efficitur metus, a vestibulum elit. Quisque suscipit pulvinar lobortis. Duis rhoncus, leo quis ultrices interdum, felis magna laoreet lorem, ut suscipit mauris nibh sed massa. Curabitur convallis, tortor ut volutpat vehicula, purus sapien accumsan sapien, et imperdiet dolor nibh id turpis. Vivamus vestibulum posuere metus ac commodo. Sed pretium posuere tincidunt.
-                        Maecenas aliquam cursus massa, at dapibus augue suscipit rutrum. Duis consequat sed metus eget mattis. Praesent egestas lorem leo, ac venenati
-                    </div>
+                    <% beers.forEach(function(beer) { %>
+                        <div class="card">
+                            <div class="beerName"><%= beer.name %></div>
+                            <div class="beerInfo">
+                                <div class="beerABV"><%= beer.abv %>°</div>
+                                <div class="beerABV"><%= beer.volume['value'] %>L</div>
+                            </div>
+                            <div class="beerABV">Since <%= beer.first_brewed %></div>
+                        </div>
+                    <% }); %>
                 </div>
                 <div class="element bottom" id="contact">
                     <img class="backRightLeft" src="./assets/img/kwak.jpg" alt="">
@@ -66,12 +71,6 @@
                 </div>
             </div>
         </div>
-
-        <ul>
-            <% beers.forEach(function(beer) { %>
-                <li> Name: <%= beer.name %></li>
-            <% }); %>
-        </ul>
 
         <script src="./js/index.js"></script>
     </body>

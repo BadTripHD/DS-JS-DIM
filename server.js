@@ -126,7 +126,7 @@ app.post("/add", async (req, res) => {
         res.redirect("/")
     }
     catch (e) {
-        res.json({error: e})
+        res.json({error: e.toString()})
     }
 })
 
